@@ -1,5 +1,7 @@
 # Integrating remote sensing and natural radionuclides to assess environmental variability in a Brazilian desertification nucleus
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23475145.svg)](https://doi.org/10.5281/zenodo.23475145)
+
 Code and data supporting the manuscript:
 
 > Silva et al. (2026). *Integrating remote sensing and natural radionuclides to assess environmental variability in a Brazilian desertification nucleus*. Submitted to *Remote Sensing Applications: Society and Environment*.
@@ -68,7 +70,9 @@ The radionuclide data and the soil sampling plot coordinates (`data/raw/plot_coo
 
 If you use this code or data, please cite the article above (DOI to be added on publication) and this repository:
 
-> Silva, B. F. da, Bertaco, G. P., Silva, P. S. C. da, Rodrigues, R. Z. dos S., Santos, M. da S., Pereira, E. C., Amorim, D. J., Cardoso Junior, M. J. de M., Ballester, M. V. R., Heiskanen, J., Silva, A. K. de O., & Camargo, P. B. de (2026). *Code and data for: Integrating remote sensing and natural radionuclides to assess environmental variability in a Brazilian desertification nucleus*. Zenodo. (DOI to be added)
+> Silva, B. F. da, Bertaco, G. P., Silva, P. S. C. da, Rodrigues, R. Z. dos S., Santos, M. da S., Pereira, E. C., Amorim, D. J., Cardoso Junior, M. J. de M., Ballester, M. V. R., Heiskanen, J., Silva, A. K. de O., & Camargo, P. B. de (2026). *Code and data for: Integrating remote sensing and natural radionuclides to assess environmental variability in a Brazilian desertification nucleus*. Zenodo. https://doi.org/10.5281/zenodo.23475145
+
+The DOI above always resolves to the latest version of this repository.
 
 ## License
 
