@@ -1,0 +1,23 @@
+{
+  "title": "Code and data for: Integrating remote sensing and natural radionuclides to assess environmental variability in a Brazilian desertification nucleus",
+  "upload_type": "software",
+  "description": "<p>R scripts and data supporting the manuscript <i>Integrating remote sensing and natural radionuclides to assess environmental variability in a Brazilian desertification nucleus</i> (Silva et al., submitted to Remote Sensing Applications: Society and Environment).</p><p>The study compares two Caatinga (seasonally dry tropical forest) patches on Assunção Island, within the Cabrobó desertification nucleus (Pernambuco, Brazil), by combining bimonthly Landsat NDVI time series (2000–2022) analysed with BFAST and natural radionuclide activity concentrations in soil (40K, 226Ra, 228Ra and 228Th), analysed with linear mixed models and machine learning classifiers (Random Forest and Gradient Boosting Machine, with permutation importance and SHAP values).</p><p>The repository contains the analysis scripts, raw inputs (NDVI composites exported from Google Earth Engine, laboratory activity concentrations and plot coordinates), processed outputs, the manuscript figures and Table 1.</p>",
+  "creators": [
+    {"name": "Silva, Bruno Fonseca da", "affiliation": "Center for Nuclear Energy in Agriculture, University of São Paulo; Semine Agritech", "orcid": "0000-0002-0222-373X"},
+    {"name": "Bertaco, Gustavo Pires", "affiliation": "Nuclear and Energy Research Institute, National Nuclear Energy Commission", "orcid": "0009-0004-7299-0362"},
+    {"name": "Silva, Paulo Sergio Cardoso da", "affiliation": "Nuclear and Energy Research Institute, National Nuclear Energy Commission", "orcid": "0000-0002-9351-9201"},
+    {"name": "Rodrigues, Rodrigo Zimmerle dos Santos", "affiliation": "Federal University of Pernambuco", "orcid": "0000-0003-2811-829X"},
+    {"name": "Santos, Mechele da Silva", "affiliation": "University of Pernambuco", "orcid": "0009-0003-9923-0024"},
+    {"name": "Pereira, Eugênia C.", "affiliation": "Federal University of Pernambuco", "orcid": "0000-0002-5821-0938"},
+    {"name": "Amorim, Deoclecio Jardim", "affiliation": "Center for Nuclear Energy in Agriculture, University of São Paulo", "orcid": "0000-0002-2844-3239"},
+    {"name": "Cardoso Junior, Marcos José de Menezes", "affiliation": "Semine Agritech; Federal Rural University of Pernambuco", "orcid": "0009-0008-8931-866X"},
+    {"name": "Ballester, Maria Victoria Ramos", "affiliation": "Center for Nuclear Energy in Agriculture, University of São Paulo", "orcid": "0000-0003-2567-6747"},
+    {"name": "Heiskanen, Janne", "affiliation": "Finnish Meteorological Institute; University of Helsinki", "orcid": "0000-0002-3899-8860"},
+    {"name": "Silva, Andrezza Karla de Oliveira", "affiliation": "University of Pernambuco", "orcid": "0000-0002-2492-0894"},
+    {"name": "Camargo, Plínio Barbosa de", "affiliation": "Center for Nuclear Energy in Agriculture, University of São Paulo", "orcid": "0000-0002-0696-3778"}
+  ],
+  "keywords": ["Caatinga", "desertification", "NDVI", "BFAST", "Landsat", "natural radionuclides", "potassium-40", "random forest", "SHAP", "R"],
+  "license": "MIT",
+  "language": "eng",
+  "notes": "Funding: São Paulo Research Foundation (FAPESP, Brazil), grant 2020/16120-9; National Council for Scientific and Technological Development (CNPq, Brazil), grants 315638/2025-7 and 447567/2024-1."
+}
