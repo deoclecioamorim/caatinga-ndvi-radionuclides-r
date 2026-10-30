@@ -18,13 +18,18 @@ R/                  analysis scripts (run in numerical order)
 data/raw/           input data
   ndvi_area_A/        138 bimonthly NDVI composites of Area A (GeoTIFF, Google Earth Engine export)
   ndvi_area_B/        138 bimonthly NDVI composites of Area B
+  Cabrobo_CHIRPS_2000_2022/  138 bimonthly CHIRPS precipitation totals (GeoTIFF)
   soil_radionuclides.xlsx         original laboratory activity concentrations (not included; see Data)
   plot_coordinates_area_A/B.xlsx  soil sampling plot coordinates (not included; see Data)
 data/processed/     outputs of the scripts (regenerated when the scripts are run)
-figures/            manuscript figures (Fig5A ... FigA5)
+figures/            manuscript figures (Fig5A ... FigA7)
 tables/             Table 1
-gee/                Google Earth Engine script used to build the NDVI composites (to be added)
+gee/                Google Earth Engine script used to build the NDVI composites
 ```
+
+## Google Earth Engine
+
+`gee/ndvi_bimonthly_composites.js` builds the bimonthly NDVI composites (2000–2022) from Landsat 5, 7, 8 and 9 Collection 2 Level-2 surface reflectance: QA cloud/shadow and saturation masks, NDVI per sensor and UTC day, TM/ETM+ NDVI harmonised to OLI (Roy et al., 2016), and per-pixel median of the sensor-day observations in each two-month period, on a 30 m grid (EPSG:32724). Masked pixels are exported as NoData (-9999); no gap filling is applied. The GeoTIFFs in `data/raw/ndvi_area_A` and `data/raw/ndvi_area_B` are the output of this script (scenario S1, band `NDVI_harmOLI`). To run it, paste the file into the Earth Engine Code Editor and set `CONFIG.areaAssets` to the polygons of the study areas, which are available from the corresponding author upon reasonable request.
 
 ## Scripts
 
@@ -33,7 +38,7 @@ All scripts are run from the repository root (e.g. open the folder as an RStudio
 | Script | Manuscript | Output |
 |---|---|---|
 | `00_bfast_functions.R` | helper functions (used by 05) | – |
-| `00_publication_theme.R` | figure standard (used by 02–08) | – |
+| `00_publication_theme.R` | figure standard (used by 02–08 and 10) | – |
 | `01_ndvi_extraction.R` | Section 2.2.2 | `data/processed/ndvi_bimonthly_area_A/B.xlsx` |
 | `02_bfast_mean_series.R` | Sections 2.2.2 and 3.2 | Fig. 5; `bfast_mean_series_results.xlsx` |
 | `03_bfast_sensitivity_h.R` | Sections 2.2.2 and 3.2 | Fig. A.1; `bfast_sensitivity_h.xlsx` |
@@ -43,9 +48,10 @@ All scripts are run from the repository root (e.g. open the folder as an RStudio
 | `07_radionuclide_variance_partitioning.R` | Sections 2.3.3 and 3.3 | Fig. 7; `radionuclide_variance_partitioning.xlsx` |
 | `08_radionuclide_machine_learning.R` | Sections 2.3.3 and 3.3 | Fig. 8 and Fig. A.5; `ml_results.xlsx` |
 | `09_table1_descriptive_statistics.R` | Section 3.3 | Table 1 |
-| `10_supplementary_material.R` | Appendix A | `Supplementary_material.docx` |
+| `10_ndvi_precipitation.R` | NDVI × precipitation | Figs. A.6 and A.7; `ndvi_precipitation_results.xlsx` |
+| `11_supplementary_material.R` | Appendix A | `Supplementary_material.docx` |
 
-Dependencies: `01_ndvi_extraction.R` before 02–05; `05` before `06`; scripts 02–08 before `10`.
+Dependencies: `01_ndvi_extraction.R` before 02–05; `05` before `06`; `02` before `10`; scripts 02–08 and 10 before `11`.
 
 ### Software
 
@@ -54,6 +60,8 @@ Analyses were run in R 4.6.0 with: terra 1.9.27, zoo 1.8.15, bfast 1.7.2, strucc
 ## Data
 
 **NDVI composites** (`data/raw/ndvi_area_A`, `data/raw/ndvi_area_B`): bimonthly median NDVI composites (January–February, …, November–December) from Landsat 5 TM, Landsat 7 ETM+ and Landsat 8 OLI, with TM/ETM+ harmonised to OLI; 30 m resolution, WGS 84 / UTM zone 24S (EPSG:32724). File names end in `_YYYY_MM_MM.tif` (year and bimonth).
+
+**Precipitation** (`data/raw/Cabrobo_CHIRPS_2000_2022`): bimonthly precipitation totals (mm) from CHIRPS (0.05°, WGS 84) for a region enclosing both study areas, 2000–2022. File names end in `_YYYY_Mon_Mon.tif` (year and bimonth). Input of `10_ndvi_precipitation.R`.
 
 **Soil radionuclides** (`data/processed/soil_radionuclides.xlsx`, sheet `samples`; not included in this version): activity concentrations (Bq kg⁻¹) determined by high-resolution gamma spectrometry in soil samples from the 0–20 cm layer. This file is the input of scripts 07–09; the results of these scripts (variance components, classification performance and variable importance, Table 1) are provided in `data/processed/` and `tables/`.
 

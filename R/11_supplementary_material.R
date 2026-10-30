@@ -1,4 +1,4 @@
-#Manuscript: Appendix A - Supplementary data (Table A.1 and Figs. A.1-A.5) | run after scripts 02 to 08
+#Manuscript: Appendix A - Supplementary data (Table A.1 and Figs. A.1-A.7) | run after scripts 02 to 08 and 10
 #Builds the Word document of the supplementary material from the final figures in figures/
 
 #Control options --------------------------------------------------------------------------------
@@ -65,13 +65,15 @@ doc <- flextable::body_add_flextable(doc, ft1)
 doc <- body_add_par(doc, "")
 
 
-# Figures A.1-A.5 ------------------------------------------------------------------------------
+# Figures A.1-A.7 ------------------------------------------------------------------------------
 captions <- list(
   list(file = "figures/FigA1.png", num = "Fig. A.1.", text = "Sensitivity of the BFAST trend component of the mean bimonthly NDVI series (Area A, Area B and difference A − B) to the minimum segment size parameter h (0.05–0.45). Values of h producing identical trends are shown as a single line. Dashed vertical line: agricultural land use detected in 2003."),
   list(file = "figures/FigA2.png", num = "Fig. A.2.", text = "Sensitivity of the BFAST trend component of the mean bimonthly NDVI series to the order of the harmonic seasonal model (K = 1–3), with one and ten iterations (h = 0.15). Curves differing by less than 0.005 NDVI are shown as a single line."),
   list(file = "figures/FigA3.png", num = "Fig. A.3.", text = "Spatial correlograms (Moran’s I by distance class) of pixel-level BFAST metrics in Areas A and B. Dashed vertical line: minimum distance (90 m) between pixels used in the spatially thinned samples."),
   list(file = "figures/FigA4.png", num = "Fig. A.4.", text = "Distribution of Cliff’s delta (Area A vs. Area B) for pixel-level BFAST metrics across 1,000 spatially thinned samples (minimum distance of 90 m between pixels). Grey band: negligible effect (|δ| < 0.147)."),
-  list(file = "figures/FigA5.png", num = "Fig. A.5.", text = "SHAP values of the natural radionuclides in the Random Forest model, expressed as contributions to the predicted probability of Area B. Colours indicate the activity concentration of each radionuclide (low to high)."))
+  list(file = "figures/FigA5.png", num = "Fig. A.5.", text = "SHAP values of the natural radionuclides in the Random Forest model, expressed as contributions to the predicted probability of Area B. Colours indicate the activity concentration of each radionuclide (low to high)."),
+  list(file = "figures/FigA6.png", num = "Fig. A.6.", text = "Relationship between bimonthly NDVI anomalies and CHIRPS precipitation anomalies in Areas A and B (2000–2022) at lags of 0, 1 and 2 bimonths. Anomalies are deviations from the 2000–2022 mean of each bimonth; bimonths with less than 70% of valid pixels were excluded. Lines: least squares fit with 95% confidence band. r: Pearson correlation; ρ: Spearman correlation; brackets: 95% moving block bootstrap intervals (1,000 replicates, blocks of six bimonths); p(BH): Newey–West p-values adjusted by the Benjamini–Hochberg procedure."),
+  list(file = "figures/FigA7.png", num = "Fig. A.7.", text = "Bimonthly CHIRPS precipitation anomalies (top; blue: above and orange: below the 2000–2022 mean of the bimonth) and NDVI anomalies of Areas A and B (bottom), 2000–2022. Vertical red lines: BFAST trend breaks of the mean NDVI series (Area A: March–April 2012; Area B: November–December 2011). Gaps: bimonths with less than 70% of valid pixels."))
 for (cp in captions) doc <- add_figure(doc, cp$file, list(num = cp$num, text = cp$text))
 
 print(doc, target = "Supplementary_material.docx")

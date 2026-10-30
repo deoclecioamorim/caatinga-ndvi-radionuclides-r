@@ -1,4 +1,4 @@
-#Manuscript: graphical standard of all figures | used by scripts 02 to 08 (requires the packages ggplot2, png and ragg)
+#Manuscript: graphical standard of all figures | used by scripts 02 to 08 and 10 (requires the packages ggplot2, png and ragg)
 #Figure standard for publication ------------------------------------------------------------------
 #Figures are saved at their final print size, so that the font is not reduced by the journal:
 #- width: 90 mm (single column), 140 mm (1.5 column) or 190 mm (full page) - Elsevier standard
