@@ -74,32 +74,39 @@ map_theme <- theme_pub() +
         legend.key.width = unit(9, "mm"), legend.key.height = unit(2.5, "mm"),
         legend.margin = margin(0, 0, 0, 0))
 
+#Area B is narrow and elongated: narrower figure (less white space) and shorter colour bars (mm)
+fig_width <- c(A = width_double, B = 115)
+bar_width <- c(A = 40, B = 24)
 metric_map <- function(a, v, title, scale) {
   p <- pix[pix$area == a, ]
   ggplot(p, aes(x, y)) +
     geom_raster(aes(fill = .data[[v]])) +
     geom_point(data = plots[plots$area == a, ], shape = 21, fill = "white", colour = "black", size = 1.2) +
-    scale + coord_equal() + labs(title = title, x = NULL, y = NULL, fill = NULL) + map_theme
+    scale + coord_equal() + labs(title = title, x = NULL, y = NULL, fill = NULL) +
+    guides(fill = guide_colourbar(barwidth = unit(bar_width[[a]], "mm"))) + map_theme
 }
+#Same limits for both areas (comparable maps); few breaks so that the labels fit under narrow panels
 lim_slope <- max(abs(pix$slope_2000_2006))
 lim_decline <- min(pix$largest_decline)
-sc_slope <- scale_fill_gradient2(low = "#B2182B", mid = "#F7F7F7", high = "#2166AC", midpoint = 0, limits = c(-lim_slope, lim_slope))
-sc_decline <- scale_fill_gradient(low = "#B2182B", high = "#F7F7F7", limits = c(lim_decline, 0))
-sc_remainder <- scale_fill_viridis_c(option = "magma", limits = range(pix$remainder_sd))
-sc_ndvi <- scale_fill_gradient(low = "#F6E8C3", high = "#01665E", limits = range(pix$mean_ndvi))
-sc_year <- scale_fill_viridis_c(option = "turbo", limits = c(2000, 2023), na.value = "grey85")
+sc_slope <- scale_fill_gradient2(low = "#B2182B", mid = "#F7F7F7", high = "#2166AC", midpoint = 0, limits = c(-lim_slope, lim_slope),
+                                 breaks = c(-0.06, 0, 0.06))
+sc_decline <- scale_fill_gradient(low = "#B2182B", high = "#F7F7F7", limits = c(lim_decline, 0), breaks = c(-0.2, -0.1, 0))
+sc_remainder <- scale_fill_viridis_c(option = "magma", limits = range(pix$remainder_sd), breaks = c(0.05, 0.10))
+sc_ndvi <- scale_fill_gradient(low = "#F6E8C3", high = "#01665E", limits = range(pix$mean_ndvi), breaks = c(0.2, 0.35, 0.5))
+sc_year <- scale_fill_viridis_c(option = "turbo", limits = c(2000, 2023), na.value = "grey85", breaks = c(2000, 2010, 2020))
+sc_interp <- scale_fill_viridis_c(limits = c(0, 20), breaks = c(0, 10, 20))
 
 for (a in names(ndvi_folders)) {
-  g <- (metric_map(a, "slope_2000_2006", "NDVI trend 2000-2006 (yr⁻¹)", sc_slope) |
-          metric_map(a, "largest_decline", "Largest abrupt decline", sc_decline) |
-          metric_map(a, "year_largest_decline", "Year of largest decline", sc_year)) /
+  g <- (metric_map(a, "slope_2000_2006", "NDVI trend\n2000-2006 (yr⁻¹)", sc_slope) |
+          metric_map(a, "largest_decline", "Largest abrupt\ndecline", sc_decline) |
+          metric_map(a, "year_largest_decline", "Year of largest\ndecline", sc_year)) /
        (metric_map(a, "remainder_sd", "Remainder SD", sc_remainder) |
-          metric_map(a, "mean_ndvi", "Mean NDVI 2000-2022", sc_ndvi) |
-          metric_map(a, "pct_interpolated", "Interpolated values (%)", scale_fill_viridis_c(limits = c(0, 20)))) +
+          metric_map(a, "mean_ndvi", "Mean NDVI\n2000-2022", sc_ndvi) |
+          metric_map(a, "pct_interpolated", "Interpolated\nvalues (%)", sc_interp)) +
     plot_annotation(title = paste("Area", a),
                     theme = theme(text = element_text(family = "serif"),
                                   plot.title = element_text(size = font_pub + 2, face = "bold")))
-  save_pub(paste0("Fig6", a), g, width_double, 165)
+  save_pub(paste0("Fig6", a), g, fig_width[[a]], 165)
 }
 
 #Year of trend breakpoints: % of pixels in each area with a breakpoint in each year (table exported below)
