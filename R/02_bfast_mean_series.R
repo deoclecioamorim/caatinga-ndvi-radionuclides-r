@@ -1,10 +1,10 @@
-#Manuscript: Section 2.2.2 items (i)-(ii); Results 3.2 (mean series and difference A - B); Fig. 5 | run after 01
+#Manuscript: Section 2.2.2 items (i)-(ii); Results 3.2 (mean series and difference A - B); Fig. 7 | run after 01
 #BFAST applied to the mean bimonthly NDVI series (2000-2022) - Areas A and B ----------------------
 #Input: data/processed/ndvi_bimonthly_area_A.xlsx and ndvi_bimonthly_area_B.xlsx
 #       (created by 01_ndvi_extraction.R; sheet 'ndvi', all pixels)
 #
 #Steps:
-#1. BFAST on the mean series of each area (mean of all pixels; Fig. 5)
+#1. BFAST on the mean series of each area (mean of all pixels; Fig. 7)
 #2. BFAST on the difference NDVI(A) - NDVI(B): it removes the regional climatic signal shared by both
 #   areas, so breakpoints in this series indicate local divergence
 #3. Linear trends for 2000-2006 fitted to the deseasonalised (STL) series
@@ -102,11 +102,11 @@ trend_2000_2006 <- do.call(rbind, lapply(c("A", "B", "diff"), function(s) {
 trend_2000_2006
 
 
-# Figures (Fig. 5A: Area A; Fig. 5B: Area B) ---------------------------------------------------
+# Figures (Fig. 7A: Area A; Fig. 7B: Area B) ---------------------------------------------------
 for (a in c("A", "B")) {
-  png_pub(paste0("Fig5", a), width_double, 150, pointsize = 13) #plot.bfast has 4 panels (text x 0.66)
+  png_pub(paste0("Fig7", a), width_double, 150, pointsize = 13) #plot.bfast has 4 panels (text x 0.66)
   plot(fit_mean[[a]]$fit, type = "components", main = paste("Area", a), ANOVA = TRUE)
-  close_pub(paste0("Fig5", a))
+  close_pub(paste0("Fig7", a))
 }
 
 

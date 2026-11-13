@@ -26,7 +26,7 @@ theme_pub <- function(base = font_pub) {
 #Text size for geom_text (in mm) equivalent to 'pt' points
 text_pub <- function(pt = font_pub - 1) pt / ggplot2::.pt
 
-#Figures are saved in figures/ with the manuscript numbering (e.g. "Fig7"), in PNG and TIFF
+#Figures are saved in figures/ with the manuscript numbering (e.g. "Fig9"), in PNG and TIFF
 fig_dir <- "figures"
 dir.create(fig_dir, showWarnings = FALSE)
 

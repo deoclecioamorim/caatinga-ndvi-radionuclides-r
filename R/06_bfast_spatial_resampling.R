@@ -1,4 +1,4 @@
-#Manuscript: Section 2.2.2 (comparison with spatially thinned samples); Results 3.2; Figs. A.3 and A.4 | run after 05
+#Manuscript: Section 2.2.2 (comparison with spatially thinned samples); Results 3.2; Figs. A.7 and A.8 | run after 05
 #Comparison of pixel-level BFAST metrics between areas using repeated, spatially thinned samples ----
 #Input: data/processed/bfast_pixel_metrics.xlsx (sheet 'pixels'; BFAST metrics for all pixels,
 #       created by 05_bfast_pixel_metrics.R)
@@ -7,11 +7,11 @@
 #and a single random sample may depend on the seed.
 #
 #Steps:
-#1. Correlogram (Moran's I by distance class) to assess the range of spatial autocorrelation (Fig. A.3)
+#1. Correlogram (Moran's I by distance class) to assess the range of spatial autocorrelation (Fig. A.7)
 #2. In each iteration, spatially thinned sampling (minimum distance d_min between pixels) in each area
 #   (several values of d_min are accepted; only 90 m is used)
 #3. Wilcoxon test (with Holm correction) and Cliff's delta between areas in each iteration
-#4. Summary of the iterations: median and 95% interval of delta, % of iterations with adjusted p < 0.05 (Fig. A.4)
+#4. Summary of the iterations: median and 95% interval of delta, % of iterations with adjusted p < 0.05 (Fig. A.8)
 
 #Control options --------------------------------------------------------------------------------
 options(OutDec = ".")
@@ -135,7 +135,7 @@ print(resampling_summary[, c("d_min", "metric", "n_A_median", "n_B_median", "del
 
 
 # Figures --------------------------------------------------------------------------------------
-#Fig. A.4: distribution of Cliff's delta across samples, by minimum distance
+#Fig. A.8: distribution of Cliff's delta across samples, by minimum distance
 iterations$label <- factor(metrics[iterations$metric], levels = rev(metrics))
 iterations$d_label <- factor(paste0(iterations$d_min, " m"), levels = paste0(d_min, " m"))
 g1 <- ggplot(iterations, aes(delta, label, fill = d_label)) +
@@ -148,9 +148,9 @@ g1 <- ggplot(iterations, aes(delta, label, fill = d_label)) +
          paste0(format(n_iter, big.mark = ","), " spatially thinned samples (minimum distance ", d_min, " m); grey band: negligible effect")
        else paste0(format(n_iter, big.mark = ","), " spatially thinned samples per minimum distance; grey band: negligible effect")) +
   theme_pub() + theme(legend.position = if (length(d_min) == 1) "none" else "bottom")
-save_pub("FigA4", g1, width_mid, 130)
+save_pub("FigA8", g1, width_mid, 130)
 
-#Fig. A.3: correlogram
+#Fig. A.7: correlogram
 correlogram$label <- metrics[correlogram$metric]
 correlogram$area <- paste("Area", correlogram$area)
 g2 <- ggplot(correlogram, aes(dist_upper, moran, colour = label)) +
@@ -160,7 +160,7 @@ g2 <- ggplot(correlogram, aes(dist_upper, moran, colour = label)) +
   facet_wrap(~ area) +
   labs(x = "Distance class (upper limit, m)", y = "Moran's I", colour = NULL) +
   theme_pub() + theme(legend.position = "bottom")
-save_pub("FigA3", g2, width_double, 100)
+save_pub("FigA7", g2, width_double, 100)
 
 
 # Export results -------------------------------------------------------------------------------

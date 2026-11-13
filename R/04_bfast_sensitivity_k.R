@@ -1,4 +1,4 @@
-#Manuscript: Section 2.2.2 (sensitivity to K); Results 3.2 (robustness); Fig. A.2 | run after 01
+#Manuscript: Section 2.2.2 (sensitivity to K); Results 3.2 (robustness); Fig. A.6 | run after 01
 #Sensitivity of BFAST to the harmonic order (K) - mean bimonthly NDVI series (2000-2022) -----------
 #
 #The bfast() function fixes K = 3 (co, si, co2, si2, co3, si3). Here the algorithm is replicated
@@ -33,7 +33,7 @@ freq <- 6 #6 bimonths per year
 k_values <- 1:3
 iter_values <- c(1, 10)
 h_values <- c(0.10, 0.15, 0.20, 0.25)
-h_figure <- 0.15 #h shown in Fig. A.2
+h_figure <- 0.15 #h shown in Fig. A.6
 year_agriculture <- 2003
 
 
@@ -181,7 +181,7 @@ res_breaks <- do.call(rbind, res_breaks)
 res_trend <- do.call(rbind, res_trend)
 
 
-# Figure A.2: trend (Tt) of the mean series by K and max.iter (h = 0.15) -----------------------
+# Figure A.6: trend (Tt) of the mean series by K and max.iter (h = 0.15) -----------------------
 res_trend$series <- factor(res_trend$series, levels = c("A", "B", "diff"),
                            labels = c("Area A", "Area B", "Difference (A - B)"))
 res_trend$max_iter <- paste("max.iter =", res_trend$max_iter)
@@ -227,7 +227,7 @@ g <- ggplot(groups_k, aes(time_yr, Tt, colour = factor(group))) +
   scale_y_continuous(expand = expansion(mult = c(0.06, 0.08))) +
   labs(x = "Year", y = "NDVI trend component (Tt)") +
   theme_pub() + theme(legend.position = "none")
-save_pub("FigA2", g, width_double, 170)
+save_pub("FigA6", g, width_double, 170)
 
 
 # Export results -------------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-#Manuscript: Section 2.3.3 (Random Forest and GBM); Results 3.3; Fig. 8 and Fig. A.5
+#Manuscript: Section 2.3.3 (Random Forest and GBM); Results 3.3; Fig. 10 and Fig. A.11
 #Classification of the areas (A x B) from natural radionuclides and variable importance
 #Input: data/processed/soil_radionuclides.xlsx
 #
@@ -145,7 +145,7 @@ cat("\n===== SHAP importance (mean |SHAP|, probability of Area B) =====\n"); pri
 
 
 # Figures --------------------------------------------------------------------------------------
-#Fig. 8: (A) cross-validation accuracy; (B) permutation importance
+#Fig. 10: (A) cross-validation accuracy; (B) permutation importance
 acc_long <- rbind(data.frame(model = "RF", accuracy = comp$RF_Accuracy),
                   data.frame(model = "GBM", accuracy = comp$GBM_Accuracy))
 acc_long$model <- factor(acc_long$model, levels = c("RF", "GBM"))
@@ -163,13 +163,13 @@ gB <- ggplot(imp, aes(importance_rel, variable)) +
   scale_x_continuous(limits = c(0, 105), expand = c(0, 0)) +
   labs(x = "Permutation importance (%)", y = NULL, title = "B") +
   theme_pub() + theme(panel.grid = element_blank(), plot.title = element_text(face = "bold"))
-save_pub("Fig8", gA + gB, width_double, 75)
+save_pub("Fig10", gA + gB, width_double, 75)
 
-#Fig. A.5: SHAP values (beeswarm)
+#Fig. A.11: SHAP values (beeswarm)
 sv <- shapviz(shap_values, X = as.data.frame(training[, predictors]))
 g_shap <- sv_importance(sv, kind = "beeswarm") + theme_pub() + labs(x = "SHAP value (probability of Area B)") +
   scale_y_discrete(labels = radionuclide_labels)
-save_pub("FigA5", g_shap, width_mid, 80)
+save_pub("FigA11", g_shap, width_mid, 80)
 
 
 # Export results -------------------------------------------------------------------------------

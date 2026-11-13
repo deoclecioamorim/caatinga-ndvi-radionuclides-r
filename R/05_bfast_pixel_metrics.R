@@ -1,4 +1,4 @@
-#Manuscript: Section 2.2.2 item (iii); Results 3.2 (spatial pattern); Fig. 6 | run after 01 and before 06
+#Manuscript: Section 2.2.2 item (iii); Results 3.2 (spatial pattern); Fig. 8 | run after 01 and before 06
 #BFAST metrics for all pixels and their maps - Areas A and B ----------------------------------------
 #Question: is the NDVI decline in 2000-2006 in Area A spatially concentrated (e.g. in the northern
 #sector, with previous agricultural use - Silva, 2018)?
@@ -67,7 +67,7 @@ area_summary <- do.call(rbind, lapply(split(pix, pix$area), function(p) data.fra
 cat("\n===== Summary (all pixels) =====\n"); print(area_summary, digits = 3)
 
 
-# 3. Maps (Fig. 6A: Area A; Fig. 6B: Area B) ---------------------------------------------------
+# 3. Maps (Fig. 8A: Area A; Fig. 8B: Area B) ---------------------------------------------------
 map_theme <- theme_pub() +
   theme(axis.text = element_blank(), axis.ticks = element_blank(), panel.grid = element_blank(),
         legend.position = "bottom", #horizontal legend: uses the width of each panel
@@ -106,7 +106,7 @@ for (a in names(ndvi_folders)) {
     plot_annotation(title = paste("Area", a),
                     theme = theme(text = element_text(family = "serif"),
                                   plot.title = element_text(size = font_pub + 2, face = "bold")))
-  save_pub(paste0("Fig6", a), g, fig_width[[a]], 165)
+  save_pub(paste0("Fig8", a), g, fig_width[[a]], 165)
 }
 
 #Year of trend breakpoints: % of pixels in each area with a breakpoint in each year (table exported below)

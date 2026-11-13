@@ -1,4 +1,4 @@
-#Manuscript: NDVI x precipitation (reviewer request); Figs. A.6 and A.7 | run after 02
+#Manuscript: NDVI x precipitation (reviewer request); Figs. A.9 and A.10 | run after 02
 #Association between bimonthly precipitation (CHIRPS) and NDVI (2000-2022) - Areas A and B -------
 #Inputs: data/raw/ndvi_area_A and data/raw/ndvi_area_B (138 GEE images each, observed values only)
 #        data/raw/Cabrobo_CHIRPS_2000_2022 (138 bimonthly CHIRPS totals, 0.05 deg, region enclosing both areas)
@@ -243,7 +243,7 @@ writexl::write_xlsx(list(series = do.call(rbind, series), coverage_summary = cov
                     "data/processed/ndvi_precipitation_results.xlsx")
 
 
-# Fig. A6: NDVI anomaly x precipitation anomaly (main scenario) --------------------------------
+# Fig. A9: NDVI anomaly x precipitation anomaly (main scenario) --------------------------------
 lag_labels <- c("Lag 0 (same bimonth)", "Lag 1 (previous bimonth)", "Lag 2 (two bimonths before)")
 fig_A6 <- do.call(rbind, lapply(names(series), function(a) do.call(rbind, lapply(lags, function(k) {
   z <- series[[a]]
@@ -272,10 +272,10 @@ g <- ggplot(fig_A6, aes(x, y)) +
   scale_y_continuous(expand = expansion(mult = c(0.05, 0.25))) + #room for the labels above the points
   labs(x = "Bimonthly precipitation anomaly (mm)", y = "NDVI anomaly") +
   theme_pub()
-save_pub("FigA6", g, width = width_double, height = 120)
+save_pub("FigA9", g, width = width_double, height = 120)
 
 
-# Fig. A7: precipitation and NDVI anomalies with the BFAST trend breaks ------------------------
+# Fig. A10: precipitation and NDVI anomalies with the BFAST trend breaks ------------------------
 fig_rain <- series$A[, c("time", "rain_anom")]
 fig_rain$panel <- "Precipitation anomaly (mm)"
 fig_rain$sign <- ifelse(fig_rain$rain_anom >= 0, "positive", "negative")
@@ -299,4 +299,4 @@ g <- ggplot() +
   labs(x = "Year", y = NULL) +
   theme_pub() +
   theme(strip.placement = "outside", strip.background = element_blank(), legend.position = "top")
-save_pub("FigA7", g, width = width_double, height = 120)
+save_pub("FigA10", g, width = width_double, height = 120)

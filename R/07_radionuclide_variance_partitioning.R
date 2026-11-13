@@ -1,4 +1,4 @@
-#Manuscript: Section 2.3.3 (hierarchical model, Eq. 5); Results 3.3 (variability among and within plots); Fig. 7
+#Manuscript: Section 2.3.3 (hierarchical model, Eq. 6); Results 3.3 (variability among and within plots); Fig. 9
 #Variance partitioning of natural radionuclide activity concentrations: among plots x within plots
 #Input: data/processed/soil_radionuclides.xlsx
 #
@@ -60,7 +60,7 @@ print(partition[, c("area", "radionuclide", "mean", "var_among_plots", "var_with
                     "pct_among_plots", "pct_within_plots", "singular")], digits = 3)
 
 
-# Figure (Fig. 7) ------------------------------------------------------------------------------
+# Figure (Fig. 9) ------------------------------------------------------------------------------
 long <- rbind(
   data.frame(partition[, c("area", "radionuclide")], component = "Among plots", pct = partition$pct_among_plots),
   data.frame(partition[, c("area", "radionuclide")], component = "Within plots", pct = partition$pct_within_plots))
@@ -84,7 +84,7 @@ g <- ggplot(long, aes(pct, radionuclide, fill = component)) +
   labs(x = "Variance explained (%)", y = NULL, fill = NULL) +
   theme_pub() + theme(legend.position = "bottom", panel.grid = element_blank(),
                       panel.spacing = unit(6, "mm"), plot.margin = margin(4, 8, 4, 4))
-save_pub("Fig7", g, width_double, 85)
+save_pub("Fig9", g, width_double, 85)
 
 
 # Export results -------------------------------------------------------------------------------

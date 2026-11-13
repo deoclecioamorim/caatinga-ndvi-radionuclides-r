@@ -1,6 +1,6 @@
-#Manuscript: Results 3.3; Table 1
+#Manuscript: Results 3.3; Table 2
 #Descriptive statistics of natural radionuclide activity concentrations (Bq kg-1) by area
-#Input: data/processed/soil_radionuclides.xlsx | Output: tables/Table1.docx and tables/Table1.xlsx
+#Input: data/processed/soil_radionuclides.xlsx | Output: tables/Table2.docx and tables/Table2.xlsx
 
 #Control options --------------------------------------------------------------------------------
 options(OutDec = ".")
@@ -37,7 +37,7 @@ for (i in seq_len(nrow(tab))) {
   ft <- compose(ft, i = i, j = "Radionuclide", value = as_paragraph(as_sup(mass), el))
 }
 ft <- set_header_labels(ft, CV = "CV (%)")
-ft <- add_header_lines(ft, values = "Table 1. Descriptive statistics of natural radionuclide activity concentrations (Bq kg⁻¹) in soil samples (0–20 cm) from the study patches of Caatinga vegetation on Assunção Island, Cabrobó (PE, Brazil). SD: standard deviation; CV: coefficient of variation.")
+ft <- add_header_lines(ft, values = "Table 2. Descriptive statistics of natural radionuclide activity concentrations (Bq kg⁻¹) in soil samples (0–20 cm) from the study patches of Caatinga vegetation on Assunção Island, Cabrobó (PE, Brazil). SD: standard deviation; CV: coefficient of variation.")
 ft <- font(ft, fontname = "Times New Roman", part = "all")
 ft <- fontsize(ft, size = 10, part = "all")
 ft <- bold(ft, i = 2, part = "header")
@@ -52,6 +52,6 @@ ft <- autofit(ft)
 
 doc <- read_docx()
 doc <- body_add_flextable(doc, ft)
-print(doc, target = "tables/Table1.docx")
-write_xlsx(tab, "tables/Table1.xlsx")
-cat("Created: tables/Table1.docx and tables/Table1.xlsx\n")
+print(doc, target = "tables/Table2.docx")
+write_xlsx(tab, "tables/Table2.xlsx")
+cat("Created: tables/Table2.docx and tables/Table2.xlsx\n")

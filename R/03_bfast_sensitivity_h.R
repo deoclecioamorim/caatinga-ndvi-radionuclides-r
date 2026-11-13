@@ -1,4 +1,4 @@
-#Manuscript: Section 2.2.2 (sensitivity to h); Results 3.2 (robustness); Fig. A.1 | run after 01
+#Manuscript: Section 2.2.2 (sensitivity to h); Results 3.2 (robustness); Fig. A.5 | run after 01
 #Sensitivity of BFAST to the parameter h - mean bimonthly NDVI series (2000-2022) ------------------
 #h = minimum segment size, as a fraction of the series length (138 bimonths)
 #Same settings as 02_bfast_mean_series.R, repeated for each value of h
@@ -79,7 +79,7 @@ res_trend <- do.call(rbind, res_trend)
 cat("\n===== Summary of the mean series =====\n"); print(res_series, digits = 3)
 
 
-# Figure A.1: trend (Tt) of the mean series and of the difference, with h grouped by result ----
+# Figure A.5: trend (Tt) of the mean series and of the difference, with h grouped by result ----
 #Values of h producing the same trend are drawn as a single curve
 
 #Compact label: consecutive values of h_values become a range (e.g. 0.10–0.25)
@@ -124,7 +124,7 @@ g <- ggplot(groups, aes(time_yr, Tt, colour = factor(group))) +
   scale_y_continuous(expand = expansion(mult = c(0.06, 0.08))) +
   labs(x = "Year", y = "NDVI trend component (Tt)") +
   theme_pub() + theme(legend.position = "none")
-save_pub("FigA1", g, width_mid, 150)
+save_pub("FigA5", g, width_mid, 150)
 
 
 # Export results -------------------------------------------------------------------------------
